@@ -5,10 +5,14 @@ import sys
 
 
 def main():
+    #Determine whether dev.py exists
     try:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alfred_audit.settings.dev')
-    except ModuleNotFoundError:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alfred_audit.settings.prod')
+        from alfred_audit.settings import dev
+        settings_path = 'alfred_audit.settings.dev'
+    except ImportError:
+        from alfred_audit.settings import prod
+        settings_path = 'alfred_audit.settings.prod'
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_path)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -18,7 +22,6 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-
 
 if __name__ == '__main__':
     main()

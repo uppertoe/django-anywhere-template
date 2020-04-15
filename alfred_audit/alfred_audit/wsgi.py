@@ -11,9 +11,13 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-try:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alfred_audit.settings.dev')
-except ModuleNotFoundError:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alfred_audit.settings.prod')
+#Determine whether dev.py exists
+    try:
+        from alfred_audit.settings import dev
+        settings_path = 'settings.dev'
+    except ImportError:
+        from alfred_audit.settings import prod
+        settings_path = 'settings.prod'
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_path)
 
 application = get_wsgi_application()
