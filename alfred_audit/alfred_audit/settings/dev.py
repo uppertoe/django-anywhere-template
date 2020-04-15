@@ -2,12 +2,12 @@ from .base import *
 from .secret_settings import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = prod_secret_key
+SECRET_KEY = dev_secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['anaesthesiology.pythonanywhere.com',]
+ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
