@@ -100,7 +100,7 @@ celerybeat-schedule
 *.sage.py
 
 #Dev settings
-settings/dev.py
+dev.py
 
 # Spyder project settings
 .spyderproject
