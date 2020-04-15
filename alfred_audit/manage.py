@@ -5,7 +5,10 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alfred_audit.settings.dev')
+    try:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alfred_audit.settings.dev')
+    except ModuleNotFoundError:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alfred_audit.settings.prod')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
